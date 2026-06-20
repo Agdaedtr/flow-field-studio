@@ -1,0 +1,11 @@
+node_modules/
+*.log
+.DS_Store
+
+# local dev helpers (not part of the app)
+gen-icon.mjs
+shot.mjs
+dbg.mjs
+shot-*.png
+package.json
+package-lock.json

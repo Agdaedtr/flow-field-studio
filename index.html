@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    ;(function () {
+      var t = new URLSearchParams(location.search).get('theme')
+      if (t) document.documentElement.dataset.theme = t
+    })()
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Flow Field Studio â generative art in your browser</title>
+  <meta name="description" content="An interactive generative-art studio. Thousands of particles drift through a Perlin-noise flow field. Tune it, paint with your cursor, export a poster-quality PNG." />
+  <link rel="icon" type="image/png" href="icon.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <canvas id="stage" aria-label="Generative flow-field canvas"></canvas>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-name">Flow&nbsp;Field&nbsp;<em>Studio</em></span>
+    </div>
+    <button id="toggle-panel" class="ghost-btn" aria-expanded="true" aria-controls="panel">
+      <span class="toggle-label">Panel</span>
+    </button>
+  </header>
+
+  <aside id="panel" class="panel" aria-label="Controls">
+    <div class="panel-scroll">
+      <section class="group">
+        <h2>Palette</h2>
+        <div id="palettes" class="swatches" role="radiogroup" aria-label="Color palette"></div>
+      </section>
+
+      <section class="group">
+        <h2>Field</h2>
+        <label class="ctrl">
+          <span>Particles <output id="out-count">1400</output></span>
+          <input id="count" type="range" min="200" max="4000" step="100" value="1400" />
+        </label>
+        <label class="ctrl">
+          <span>Flow scale <output id="out-scale">1.40</output></span>
+          <input id="scale" type="range" min="0.4" max="4" step="0.05" value="1.4" />
+        </label>
+        <label class="ctrl">
+          <span>Speed <output id="out-speed">1.20</output></span>
+          <input id="speed" type="range" min="0.2" max="4" step="0.05" value="1.2" />
+        </label>
+        <label class="ctrl">
+          <span>Curl <output id="out-curl">2.30</output></span>
+          <input id="curl" type="range" min="0.2" max="6" step="0.1" value="2.3" />
+        </label>
+        <label class="ctrl">
+          <span>Stroke <output id="out-width">1.4</output></span>
+          <input id="width" type="range" min="0.4" max="5" step="0.1" value="1.4" />
+        </label>
+        <label class="ctrl">
+          <span>Fade <output id="out-fade">0.045</output></span>
+          <input id="fade" type="range" min="0" max="0.25" step="0.005" value="0.045" />
+        </label>
+      </section>
+
+      <section class="group">
+        <h2>Cursor force</h2>
+        <div class="seg" role="radiogroup" aria-label="Cursor force">
+          <button class="seg-btn is-on" data-force="attract">Attract</button>
+          <button class="seg-btn" data-force="repel">Repel</button>
+          <button class="seg-btn" data-force="off">Off</button>
+        </div>
+      </section>
+
+      <section class="group actions">
+        <button id="reseed" class="btn">New seed</button>
+        <button id="clear" class="btn">Clear</button>
+        <button id="play" class="btn">Pause</button>
+        <button id="save" class="btn btn-primary">Save PNG</button>
+      </section>
+
+      <p class="hint">Drag on the canvas to steer the swarm. Everything runs locally â nothing leaves your browser.</p>
+    </div>
+  </aside>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
