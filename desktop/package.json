@@ -1,0 +1,36 @@
+{
+  "name": "flow-field-studio-desktop",
+  "productName": "Flow Field Studio",
+  "version": "1.0.0",
+  "description": "Desktop build of Flow Field Studio (Electron).",
+  "main": "main.js",
+  "author": "Flow Field Studio contributors",
+  "license": "MIT",
+  "scripts": {
+    "prestart": "node copy-assets.mjs",
+    "start": "electron .",
+    "predist:win": "node copy-assets.mjs",
+    "dist:win": "electron-builder --win portable --x64",
+    "predist:win-installer": "node copy-assets.mjs",
+    "dist:win-installer": "electron-builder --win nsis --x64"
+  },
+  "build": {
+    "appId": "studio.flowfield.app",
+    "productName": "Flow Field Studio",
+    "files": ["main.js", "app/**/*"],
+    "win": {
+      "target": "portable",
+      "icon": "app/icon.png"
+    },
+    "portable": {
+      "artifactName": "FlowFieldStudio-portable-${version}.exe"
+    },
+    "directories": {
+      "output": "dist"
+    }
+  },
+  "devDependencies": {
+    "electron": "^32.0.0",
+    "electron-builder": "^25.0.0"
+  }
+}

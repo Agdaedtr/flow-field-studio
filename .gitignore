@@ -9,3 +9,8 @@ dbg.mjs
 shot-*.png
 package.json
 package-lock.json
+
+# desktop build artifacts
+desktop/node_modules/
+desktop/app/
+desktop/dist/

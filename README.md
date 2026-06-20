@@ -40,6 +40,18 @@ npx serve .
 
 Then open `http://localhost:8000`.
 
+## Desktop app (Windows `.exe`)
+
+A native desktop build is available via an [Electron](https://www.electronjs.org/) wrapper in [`desktop/`](desktop/). It runs the exact same canvas app in its own window, fully offline.
+
+```bash
+cd desktop
+npm install
+npm run dist:win   # -> desktop/dist/FlowFieldStudio-portable-1.0.0.exe
+```
+
+The result is a single self-contained **portable `.exe`** (x64) â no installation, just double-click. Building Windows targets from Linux/macOS requires [Wine](https://www.winehq.org/); on Windows no extra tooling is needed. See [`desktop/README.md`](desktop/README.md) for details and the NSIS-installer variant.
+
 ## How it works
 
 Each particle samples a smoothly-varying noise field at its position to get a flow angle, steps forward along that angle, and draws a short line segment. A faint translucent wash is painted over the canvas every frame, so older segments fade out and create the characteristic streaking trails. The noise field's third dimension is animated over time, which makes the whole field slowly breathe. See [`app.js`](app.js) â it is small and commented.
